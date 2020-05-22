@@ -154,9 +154,7 @@ func (this EvaluableExpression) Eval(parameters Parameters) (interface{}, error)
 		return nil, nil
 	}
 
-	if parameters != nil {
-		parameters = &sanitizedParameters{parameters}
-	} else {
+	if parameters == nil {
 		parameters = DUMMY_PARAMETERS
 	}
 

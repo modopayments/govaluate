@@ -198,7 +198,7 @@ func TestParsingFailure(test *testing.T) {
 		ParsingFailureTest{
 			Name:     "Hex float (Unsupported)",
 			Input:    "0x1.1",
-			Expected: INVALID_TOKEN_TRANSITION,
+			Expected: INVALID_NUMERIC,
 		},
 		ParsingFailureTest{
 			Name:     "Hex invalid letter",

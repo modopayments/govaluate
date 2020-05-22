@@ -89,7 +89,7 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 
 				if stream.canRead() && character == 'x' {
 					tokenString, _ = readUntilFalse(stream, false, true, true, isHexDigit)
-					tokenValueInt, err := strconv.ParseUint(tokenString, 16, 64)
+					tokenValueInt, err := strconv.ParseInt(tokenString, 16, 64)
 
 					if err != nil {
 						errorMsg := fmt.Sprintf("Unable to parse hex value '%v' to uint64\n", tokenString)
@@ -97,7 +97,7 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 					}
 
 					kind = NUMERIC
-					tokenValue = float64(tokenValueInt)
+					tokenValue = tokenValueInt
 					break
 				} else {
 					stream.rewind(1)
@@ -105,10 +105,10 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 			}
 
 			tokenString = readTokenUntilFalse(stream, isNumeric)
-			tokenValue, err = strconv.ParseFloat(tokenString, 64)
+			tokenValue, err = strconv.ParseInt(tokenString, 10, 64)
 
 			if err != nil {
-				errorMsg := fmt.Sprintf("Unable to parse numeric value '%v' to float64\n", tokenString)
+				errorMsg := fmt.Sprintf("Unable to parse numeric value '%v' to int64\n", tokenString)
 				return ExpressionToken{}, errors.New(errorMsg), false
 			}
 			kind = NUMERIC

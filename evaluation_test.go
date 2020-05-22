@@ -32,115 +32,115 @@ func TestNoParameterEvaluation(test *testing.T) {
 
 			Name:     "Single PLUS",
 			Input:    "51 + 49",
-			Expected: 100.0,
+			Expected: int64(100),
 		},
 		EvaluationTest{
 
 			Name:     "Single MINUS",
 			Input:    "100 - 51",
-			Expected: 49.0,
+			Expected: int64(49),
 		},
 		EvaluationTest{
 
 			Name:     "Single BITWISE AND",
 			Input:    "100 & 50",
-			Expected: 32.0,
+			Expected: int64(32),
 		},
 		EvaluationTest{
 
 			Name:     "Single BITWISE OR",
 			Input:    "100 | 50",
-			Expected: 118.0,
+			Expected: int64(118),
 		},
 		EvaluationTest{
 
 			Name:     "Single BITWISE XOR",
 			Input:    "100 ^ 50",
-			Expected: 86.0,
+			Expected: int64(86),
 		},
 		EvaluationTest{
 
 			Name:     "Single shift left",
 			Input:    "2 << 1",
-			Expected: 4.0,
+			Expected: int64(4),
 		},
 		EvaluationTest{
 
 			Name:     "Single shift right",
 			Input:    "2 >> 1",
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
 			Name:     "Single BITWISE NOT",
 			Input:    "~10",
-			Expected: -11.0,
+			Expected: int64(-11),
 		},
 		EvaluationTest{
 
 			Name:     "Single MULTIPLY",
 			Input:    "5 * 20",
-			Expected: 100.0,
+			Expected: int64(100),
 		},
 		EvaluationTest{
 
 			Name:     "Single DIVIDE",
 			Input:    "100 / 20",
-			Expected: 5.0,
+			Expected: int64(5),
 		},
 		EvaluationTest{
 
 			Name:     "Single even MODULUS",
 			Input:    "100 % 2",
-			Expected: 0.0,
+			Expected: int64(0),
 		},
 		EvaluationTest{
 
 			Name:     "Single odd MODULUS",
 			Input:    "101 % 2",
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
 			Name:     "Single EXPONENT",
 			Input:    "10 ** 2",
-			Expected: 100.0,
+			Expected: int64(100),
 		},
 		EvaluationTest{
 
 			Name:     "Compound PLUS",
 			Input:    "20 + 30 + 50",
-			Expected: 100.0,
+			Expected: int64(100),
 		},
 		EvaluationTest{
 
 			Name:     "Compound BITWISE AND",
 			Input:    "20 & 30 & 50",
-			Expected: 16.0,
+			Expected: int64(16),
 		},
 		EvaluationTest{
 
 			Name:     "Mutiple operators",
 			Input:    "20 * 5 - 49",
-			Expected: 51.0,
+			Expected: int64(51),
 		},
 		EvaluationTest{
 
 			Name:     "Parenthesis usage",
 			Input:    "100 - (5 * 10)",
-			Expected: 50.0,
+			Expected: int64(50),
 		},
 		EvaluationTest{
 
 			Name:     "Nested parentheses",
 			Input:    "50 + (5 * (15 - 5))",
-			Expected: 100.0,
+			Expected: int64(100),
 		},
 		EvaluationTest{
 
 			Name:     "Nested parentheses with bitwise",
 			Input:    "100 ^ (23 * (2 | 5))",
-			Expected: 197.0,
+			Expected: int64(197),
 		},
 		EvaluationTest{
 
@@ -212,64 +212,64 @@ func TestNoParameterEvaluation(test *testing.T) {
 
 			Name:     "Multiplicative/additive order",
 			Input:    "5 + 10 * 2",
-			Expected: 25.0,
+			Expected: int64(25),
 		},
 		EvaluationTest{
 
 			Name:     "Multiple constant multiplications",
 			Input:    "10 * 10 * 10",
-			Expected: 1000.0,
+			Expected: int64(1000),
 		},
 		EvaluationTest{
 
 			Name:     "Multiple adds/multiplications",
 			Input:    "10 * 10 * 10 + 1 * 10 * 10",
-			Expected: 1100.0,
+			Expected: int64(1100),
 		},
 		EvaluationTest{
 
 			Name:     "Modulus precedence",
 			Input:    "1 + 101 % 2 * 5",
-			Expected: 6.0,
+			Expected: int64(6),
 		},
 		EvaluationTest{
 
 			Name:     "Exponent precedence",
 			Input:    "1 + 5 ** 3 % 2 * 5",
-			Expected: 6.0,
+			Expected: int64(6),
 		},
 		EvaluationTest{
 
 			Name:     "Bit shift precedence",
 			Input:    "50 << 1 & 90",
-			Expected: 64.0,
+			Expected: int64(64),
 		},
 		EvaluationTest{
 
 			Name:     "Bit shift precedence",
 			Input:    "90 & 50 << 1",
-			Expected: 64.0,
+			Expected: int64(64),
 		},
 		EvaluationTest{
 
 			Name:     "Bit shift precedence amongst non-bitwise",
 			Input:    "90 + 50 << 1 * 5",
-			Expected: 4480.0,
+			Expected: int64(4480),
 		},
 		EvaluationTest{
 			Name:     "Order of non-commutative same-precedence operators (additive)",
 			Input:    "1 - 2 - 4 - 8",
-			Expected: -13.0,
+			Expected: int64(-13),
 		},
 		EvaluationTest{
 			Name:     "Order of non-commutative same-precedence operators (multiplicative)",
 			Input:    "1 * 4 / 2 * 8",
-			Expected: 16.0,
+			Expected: int64(16),
 		},
 		EvaluationTest{
 			Name:     "Null coalesce precedence",
 			Input:    "true ?? true ? 100 + 200 : 400",
-			Expected: 300.0,
+			Expected: int64(300),
 		},
 		EvaluationTest{
 
@@ -371,13 +371,13 @@ func TestNoParameterEvaluation(test *testing.T) {
 
 			Name:     "Negation after modifier",
 			Input:    "10 * -10",
-			Expected: -100.0,
+			Expected: int64(-100),
 		},
 		EvaluationTest{
 
 			Name:     "Ternary with single boolean",
 			Input:    "true ? 10",
-			Expected: 10.0,
+			Expected: int64(10),
 		},
 		EvaluationTest{
 
@@ -388,37 +388,37 @@ func TestNoParameterEvaluation(test *testing.T) {
 		EvaluationTest{
 
 			Name:     "Ternary with comparator boolean",
-			Input:    "10 > 5 ? 35.50",
-			Expected: 35.50,
+			Input:    "10 > 5 ? 35",
+			Expected: int64(35),
 		},
 		EvaluationTest{
 
 			Name:     "Ternary nil with comparator boolean",
-			Input:    "1 > 5 ? 35.50",
+			Input:    "1 > 5 ? 35",
 			Expected: nil,
 		},
 		EvaluationTest{
 
 			Name:     "Ternary with parentheses",
-			Input:    "(5 * (15 - 5)) > 5 ? 35.50",
-			Expected: 35.50,
+			Input:    "(5 * (15 - 5)) > 5 ? 35",
+			Expected: int64(35),
 		},
 		EvaluationTest{
 
 			Name:     "Ternary precedence",
-			Input:    "true ? 35.50 > 10",
+			Input:    "true ? 35 > 10",
 			Expected: true,
 		},
 		EvaluationTest{
 
 			Name:     "Ternary-else",
-			Input:    "false ? 35.50 : 50",
-			Expected: 50.0,
+			Input:    "false ? 35 : 50",
+			Expected: int64(50),
 		},
 		EvaluationTest{
 
 			Name:     "Ternary-else inside clause",
-			Input:    "(false ? 5 : 35.50) > 10",
+			Input:    "(false ? 5 : 35) > 10",
 			Expected: true,
 		},
 		EvaluationTest{
@@ -431,25 +431,25 @@ func TestNoParameterEvaluation(test *testing.T) {
 
 			Name:     "Ternary-else before comparator (negative case)",
 			Input:    "true ? 1 : 5 > 10",
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
 			Name:     "Nested ternaries (#32)",
 			Input:    "(2 == 2) ? 1 : (true ? 2 : 3)",
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
 			Name:     "Nested ternaries, right case (#32)",
 			Input:    "false ? 1 : (true ? 2 : 3)",
-			Expected: 2.0,
+			Expected: int64(2),
 		},
 		EvaluationTest{
 
 			Name:     "Doubly-nested ternaries (#32)",
 			Input:    "true ? (false ? 1 : (false ? 2 : 3)) : (false ? 4 : 5)",
-			Expected: 3.0,
+			Expected: int64(3),
 		},
 		EvaluationTest{
 
@@ -459,13 +459,13 @@ func TestNoParameterEvaluation(test *testing.T) {
 		},
 		EvaluationTest{
 
-			Name:     "String to float64 concat",
+			Name:     "String to int64 concat",
 			Input:    "'foo' + 123 == 'foo123'",
 			Expected: true,
 		},
 		EvaluationTest{
 
-			Name:     "Float64 to string concat",
+			Name:     "int64 to string concat",
 			Input:    "123 + 'bar' == '123bar'",
 			Expected: true,
 		},
@@ -491,7 +491,7 @@ func TestNoParameterEvaluation(test *testing.T) {
 
 			Name:     "Null coalesce left",
 			Input:    "1 ?? 2",
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
@@ -569,7 +569,7 @@ func TestNoParameterEvaluation(test *testing.T) {
 				},
 			},
 
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 
 		EvaluationTest{
@@ -578,11 +578,11 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "passthrough(1, 2)",
 			Functions: map[string]ExpressionFunction{
 				"passthrough": func(arguments ...interface{}) (interface{}, error) {
-					return arguments[0].(float64) + arguments[1].(float64), nil
+					return arguments[0].(int64) + arguments[1].(int64), nil
 				},
 			},
 
-			Expected: 3.0,
+			Expected: int64(3),
 		},
 		EvaluationTest{
 
@@ -591,15 +591,15 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Functions: map[string]ExpressionFunction{
 				"sum": func(arguments ...interface{}) (interface{}, error) {
 
-					sum := 0.0
+					var sum int64
 					for _, v := range arguments {
-						sum += v.(float64)
+						sum += v.(int64)
 					}
 					return sum, nil
 				},
 			},
 
-			Expected: 14.0,
+			Expected: int64(14),
 		},
 		EvaluationTest{
 
@@ -607,7 +607,7 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "numeric()-1 > 0",
 			Functions: map[string]ExpressionFunction{
 				"numeric": func(arguments ...interface{}) (interface{}, error) {
-					return 2.0, nil
+					return int64(2), nil
 				},
 			},
 
@@ -619,7 +619,7 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "numeric() > 0",
 			Functions: map[string]ExpressionFunction{
 				"numeric": func(arguments ...interface{}) (interface{}, error) {
-					return 2.0, nil
+					return int64(2), nil
 				},
 			},
 
@@ -640,14 +640,14 @@ func TestNoParameterEvaluation(test *testing.T) {
 		EvaluationTest{
 
 			Name:  "Empty function ternary",
-			Input: "nope() ? 1 : 2.0",
+			Input: "nope() ? 1 : 2",
 			Functions: map[string]ExpressionFunction{
 				"nope": func(arguments ...interface{}) (interface{}, error) {
 					return false, nil
 				},
 			},
 
-			Expected: 2.0,
+			Expected: int64(2),
 		},
 		EvaluationTest{
 
@@ -659,7 +659,7 @@ func TestNoParameterEvaluation(test *testing.T) {
 				},
 			},
 
-			Expected: 2.0,
+			Expected: int64(2),
 		},
 		EvaluationTest{
 
@@ -667,11 +667,11 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "-ten()",
 			Functions: map[string]ExpressionFunction{
 				"ten": func(arguments ...interface{}) (interface{}, error) {
-					return 10.0, nil
+					return int64(10), nil
 				},
 			},
 
-			Expected: -10.0,
+			Expected: int64(-10),
 		},
 		EvaluationTest{
 
@@ -679,11 +679,11 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "10 - numeric() - 2",
 			Functions: map[string]ExpressionFunction{
 				"numeric": func(arguments ...interface{}) (interface{}, error) {
-					return 5.0, nil
+					return int64(5), nil
 				},
 			},
 
-			Expected: 3.0,
+			Expected: int64(3),
 		},
 		EvaluationTest{
 
@@ -691,7 +691,7 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "10 in (1, 2, 3, ten(), 8)",
 			Functions: map[string]ExpressionFunction{
 				"ten": func(arguments ...interface{}) (interface{}, error) {
-					return 10.0, nil
+					return int64(10), nil
 				},
 			},
 
@@ -703,22 +703,22 @@ func TestNoParameterEvaluation(test *testing.T) {
 			Input: "(ten() - 1) > 3",
 			Functions: map[string]ExpressionFunction{
 				"ten": func(arguments ...interface{}) (interface{}, error) {
-					return 10.0, nil
+					return int64(10), nil
 				},
 			},
 
 			Expected: true,
 		},
 		EvaluationTest{
-			
+
 			Name:  "Ternary/Java EL ambiguity",
 			Input: "false ? foo:length()",
 			Functions: map[string]ExpressionFunction{
 				"length": func(arguments ...interface{}) (interface{}, error) {
-					return 1.0, nil
+					return int64(1), nil
 				},
 			},
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 	}
 
@@ -737,10 +737,10 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
-			Expected: 4.0,
+			Expected: int64(4),
 		},
 		EvaluationTest{
 
@@ -750,14 +750,14 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 5.0,
+					Value: int64(5),
 				},
 				EvaluationParameter{
 					Name:  "bar",
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
-			Expected: 10.0,
+			Expected: int64(10),
 		},
 		EvaluationTest{
 
@@ -767,10 +767,10 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 10.0,
+					Value: int64(10),
 				},
 			},
-			Expected: 1000.0,
+			Expected: int64(1000),
 		},
 		EvaluationTest{
 
@@ -780,10 +780,10 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 10.0,
+					Value: int64(10),
 				},
 			},
-			Expected: 30.0,
+			Expected: int64(30),
 		},
 		EvaluationTest{
 
@@ -793,18 +793,18 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 8.0,
+					Value: int64(8),
 				},
 				EvaluationParameter{
 					Name:  "FoO",
-					Value: 4.0,
+					Value: int64(4),
 				},
 				EvaluationParameter{
 					Name:  "FOO",
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
-			Expected: 14.0,
+			Expected: int64(14),
 		},
 		EvaluationTest{
 
@@ -814,7 +814,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: -8.0,
+					Value: int64(-8),
 				},
 			},
 			Expected: true,
@@ -827,7 +827,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 2,
+					Value: int64(2),
 				},
 			},
 			Expected: true,
@@ -867,11 +867,11 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 1,
+					Value: int64(1),
 				},
 				EvaluationParameter{
 					Name:  "bar",
-					Value: 11,
+					Value: int64(11),
 				},
 			},
 			Expected: false,
@@ -974,7 +974,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 					Value: true,
 				},
 			},
-			Expected: 10.0,
+			Expected: int64(10),
 		},
 		EvaluationTest{
 
@@ -986,7 +986,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 					Value: "amazon",
 				},
 			},
-			Expected: 10.0,
+			Expected: int64(10),
 		},
 		EvaluationTest{
 
@@ -1011,10 +1011,10 @@ func TestParameterizedEvaluation(test *testing.T) {
 				},
 				EvaluationParameter{
 					Name:  "period",
-					Value: 24,
+					Value: int64(24),
 				},
 			},
-			Expected: 60.0,
+			Expected: int64(60),
 		},
 		EvaluationTest{
 
@@ -1027,7 +1027,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 				},
 				EvaluationParameter{
 					Name:  "period",
-					Value: 24,
+					Value: int64(24),
 				},
 			},
 			Expected: nil,
@@ -1071,7 +1071,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 				},
 				EvaluationParameter{
 					Name:  "bar",
-					Value: 123.0,
+					Value: int64(123),
 				},
 			},
 			Expected: "baz123",
@@ -1090,71 +1090,31 @@ func TestParameterizedEvaluation(test *testing.T) {
 		},
 		EvaluationTest{
 
-			Name:  "Integer width spectrum",
-			Input: "uint8 + uint16 + uint32 + uint64 + int8 + int16 + int32 + int64",
+			Name:  "Floats",
+			Input: "float32 + int64",
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
-					Name:  "uint8",
-					Value: uint8(0),
-				},
-				EvaluationParameter{
-					Name:  "uint16",
-					Value: uint16(0),
-				},
-				EvaluationParameter{
-					Name:  "uint32",
-					Value: uint32(0),
-				},
-				EvaluationParameter{
-					Name:  "uint64",
-					Value: uint64(0),
-				},
-				EvaluationParameter{
-					Name:  "int8",
-					Value: int8(0),
-				},
-				EvaluationParameter{
-					Name:  "int16",
-					Value: int16(0),
-				},
-				EvaluationParameter{
-					Name:  "int32",
-					Value: int32(0),
+					Name:  "float32",
+					Value: int64(0),
 				},
 				EvaluationParameter{
 					Name:  "int64",
 					Value: int64(0),
 				},
 			},
-			Expected: 0.0,
-		},
-		EvaluationTest{
-
-			Name:  "Floats",
-			Input: "float32 + float64",
-			Parameters: []EvaluationParameter{
-				EvaluationParameter{
-					Name:  "float32",
-					Value: float32(0.0),
-				},
-				EvaluationParameter{
-					Name:  "float64",
-					Value: float64(0.0),
-				},
-			},
-			Expected: 0.0,
+			Expected: int64(0),
 		},
 		EvaluationTest{
 
 			Name:  "Null coalesce right",
-			Input: "foo ?? 1.0",
+			Input: "foo ?? 1",
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "foo",
 					Value: nil,
 				},
 			},
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
@@ -1163,7 +1123,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 2887057409,
+					Value: int64(2887057409),
 				},
 			},
 			Expected: true,
@@ -1175,7 +1135,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 2887057409,
+					Value: int64(2887057409),
 				},
 			},
 			Expected: true,
@@ -1187,7 +1147,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 168100865,
+					Value: int64(168100865),
 				},
 			},
 			Expected: true,
@@ -1199,7 +1159,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "foo",
-					Value: 168100865,
+					Value: int64(168100865),
 				},
 			},
 			Expected: true,
@@ -1211,7 +1171,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "arr",
-					Value: []int{0, 0, 0},
+					Value: []int64{0, 0, 0},
 				},
 			},
 			Expected: true,
@@ -1223,7 +1183,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "arr",
-					Value: []int{0, 0, 0},
+					Value: []int64{0, 0, 0},
 				},
 			},
 			Expected: false,
@@ -1231,13 +1191,13 @@ func TestParameterizedEvaluation(test *testing.T) {
 		EvaluationTest{
 
 			Name:  "Mixed function and parameters",
-			Input: "sum(1.2, amount) + name",
+			Input: "sum(1, amount) + name",
 			Functions: map[string]ExpressionFunction{
 				"sum": func(arguments ...interface{}) (interface{}, error) {
 
-					sum := 0.0
+					var sum int64
 					for _, v := range arguments {
-						sum += v.(float64)
+						sum += v.(int64)
 					}
 					return sum, nil
 				},
@@ -1245,7 +1205,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Parameters: []EvaluationParameter{
 				EvaluationParameter{
 					Name:  "amount",
-					Value: .8,
+					Value: int64(1),
 				},
 				EvaluationParameter{
 					Name:  "name",
@@ -1286,7 +1246,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 					return nil, errors.New("Did not short-circuit")
 				},
 			},
-			Expected: 1.0,
+			Expected: int64(1),
 		},
 		EvaluationTest{
 
@@ -1358,7 +1318,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 		EvaluationTest{
 
 			Name:       "Parameter function call with all argument types",
-			Input:      "foo.TestArgs(\"hello\", 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1.0, 2.0, true)",
+			Input:      "foo.TestArgs(\"hello\", 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, true)",
 			Parameters: []EvaluationParameter{fooParameter},
 			Expected:   "hello: 33",
 		},
@@ -1396,7 +1356,7 @@ func TestParameterizedEvaluation(test *testing.T) {
 			Name:       "Parameter call with + modifier",
 			Input:      "1 + foo.Int",
 			Parameters: []EvaluationParameter{fooParameter},
-			Expected:   102.0,
+			Expected:   int64(102),
 		},
 		EvaluationTest{
 
@@ -1449,17 +1409,17 @@ func TestStructFunctions(test *testing.T) {
 
 	functions := map[string]ExpressionFunction{
 		"func1": func(args ...interface{}) (interface{}, error) {
-			return float64(y2k.Year()), nil
+			return int64(y2k.Year()), nil
 		},
 		"func2": func(args ...interface{}) (interface{}, error) {
-			return float64(y2k1.Year()), nil
+			return int64(y2k1.Year()), nil
 		},
 	}
 
 	exp, _ := NewEvaluableExpressionWithFunctions("func1() + func2()", functions)
 	result, _ := exp.Evaluate(nil)
 
-	if result != 4001.0 {
+	if result != int64(4001) {
 		test.Logf("Function calling method did not return the right value. Got: %v, expected %d\n", result, 4001)
 		test.Fail()
 	}

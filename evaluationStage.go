@@ -93,46 +93,46 @@ func addStage(left interface{}, right interface{}, parameters Parameters) (inter
 		return fmt.Sprintf("%v%v", left, right), nil
 	}
 
-	return left.(float64) + right.(float64), nil
+	return left.(int64) + right.(int64), nil
 }
 func subtractStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return left.(float64) - right.(float64), nil
+	return left.(int64) - right.(int64), nil
 }
 func multiplyStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return left.(float64) * right.(float64), nil
+	return left.(int64) * right.(int64), nil
 }
 func divideStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return left.(float64) / right.(float64), nil
+	return left.(int64) / right.(int64), nil
 }
 func exponentStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return math.Pow(left.(float64), right.(float64)), nil
+	return int64(math.Pow(float64(left.(int64)), float64(right.(int64)))), nil
 }
 func modulusStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return math.Mod(left.(float64), right.(float64)), nil
+	return int64(math.Mod(float64(left.(int64)), float64(right.(int64)))), nil
 }
 func gteStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	if isString(left) && isString(right) {
 		return boolIface(left.(string) >= right.(string)), nil
 	}
-	return boolIface(left.(float64) >= right.(float64)), nil
+	return boolIface(left.(int64) >= right.(int64)), nil
 }
 func gtStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	if isString(left) && isString(right) {
 		return boolIface(left.(string) > right.(string)), nil
 	}
-	return boolIface(left.(float64) > right.(float64)), nil
+	return boolIface(left.(int64) > right.(int64)), nil
 }
 func lteStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	if isString(left) && isString(right) {
 		return boolIface(left.(string) <= right.(string)), nil
 	}
-	return boolIface(left.(float64) <= right.(float64)), nil
+	return boolIface(left.(int64) <= right.(int64)), nil
 }
 func ltStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	if isString(left) && isString(right) {
 		return boolIface(left.(string) < right.(string)), nil
 	}
-	return boolIface(left.(float64) < right.(float64)), nil
+	return boolIface(left.(int64) < right.(int64)), nil
 }
 func equalStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	return boolIface(reflect.DeepEqual(left, right)), nil
@@ -147,13 +147,13 @@ func orStage(left interface{}, right interface{}, parameters Parameters) (interf
 	return boolIface(left.(bool) || right.(bool)), nil
 }
 func negateStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return -right.(float64), nil
+	return -right.(int64), nil
 }
 func invertStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	return boolIface(!right.(bool)), nil
 }
 func bitwiseNotStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return float64(^int64(right.(float64))), nil
+	return int64(^int64(right.(int64))), nil
 }
 func ternaryIfStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	if left.(bool) {
@@ -197,19 +197,19 @@ func notRegexStage(left interface{}, right interface{}, parameters Parameters) (
 }
 
 func bitwiseOrStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return float64(int64(left.(float64)) | int64(right.(float64))), nil
+	return int64(int64(left.(int64)) | int64(right.(int64))), nil
 }
 func bitwiseAndStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return float64(int64(left.(float64)) & int64(right.(float64))), nil
+	return int64(int64(left.(int64)) & int64(right.(int64))), nil
 }
 func bitwiseXORStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return float64(int64(left.(float64)) ^ int64(right.(float64))), nil
+	return int64(int64(left.(int64)) ^ int64(right.(int64))), nil
 }
 func leftShiftStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return float64(uint64(left.(float64)) << uint64(right.(float64))), nil
+	return int64(uint64(left.(int64)) << uint64(right.(int64))), nil
 }
 func rightShiftStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return float64(uint64(left.(float64)) >> uint64(right.(float64))), nil
+	return int64(uint64(left.(int64)) >> uint64(right.(int64))), nil
 }
 
 func makeParameterStage(parameterName string) evaluationOperator {
@@ -399,7 +399,6 @@ func makeAccessorStage(pair []string) evaluationOperator {
 			return nil, errors.New("Method call '" + pair[0] + "." + pair[1] + "' did not return either one value, or a value and an error. Cannot interpret meaning.")
 		}
 
-		value = castToFloat64(value)
 		return value, nil
 	}
 }
@@ -458,9 +457,9 @@ func isBool(value interface{}) bool {
 	return false
 }
 
-func isFloat64(value interface{}) bool {
+func isint64(value interface{}) bool {
 	switch value.(type) {
-	case float64:
+	case int64:
 		return true
 	}
 	return false
@@ -472,7 +471,7 @@ func isFloat64(value interface{}) bool {
 */
 func additionTypeCheck(left interface{}, right interface{}) bool {
 
-	if isFloat64(left) && isFloat64(right) {
+	if isint64(left) && isint64(right) {
 		return true
 	}
 	if !isString(left) && !isString(right) {
@@ -487,7 +486,7 @@ func additionTypeCheck(left interface{}, right interface{}) bool {
 */
 func comparatorTypeCheck(left interface{}, right interface{}) bool {
 
-	if isFloat64(left) && isFloat64(right) {
+	if isint64(left) && isint64(right) {
 		return true
 	}
 	if isString(left) && isString(right) {

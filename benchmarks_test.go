@@ -87,7 +87,7 @@ func BenchmarkEvaluationParameter(bench *testing.B) {
 
 	expression, _ := NewEvaluableExpression("requests_made")
 	parameters := map[string]interface{}{
-		"requests_made": 99.0,
+		"requests_made": int64(99),
 	}
 
 	bench.ResetTimer()
@@ -103,8 +103,8 @@ func BenchmarkEvaluationParameters(bench *testing.B) {
 
 	expression, _ := NewEvaluableExpression("requests_made > requests_succeeded")
 	parameters := map[string]interface{}{
-		"requests_made":      99.0,
-		"requests_succeeded": 90.0,
+		"requests_made":      int64(99),
+		"requests_succeeded": int64(90),
 	}
 
 	bench.ResetTimer()
@@ -120,8 +120,8 @@ func BenchmarkEvaluationParametersModifiers(bench *testing.B) {
 
 	expression, _ := NewEvaluableExpression("(requests_made * requests_succeeded / 100) >= 90")
 	parameters := map[string]interface{}{
-		"requests_made":      99.0,
-		"requests_succeeded": 90.0,
+		"requests_made":      int64(99),
+		"requests_succeeded": int64(90),
 	}
 
 	bench.ResetTimer()
@@ -148,9 +148,9 @@ func BenchmarkComplexExpression(bench *testing.B) {
 
 	expression, _ := NewEvaluableExpression(expressionString)
 	parameters := map[string]interface{}{
-		"escapedVariable name with spaces": 99.0,
-		"unescaped\\-variableName":         90.0,
-		"modifierTest":                     5.0,
+		"escapedVariable name with spaces": int64(99),
+		"unescaped\\-variableName":         int64(90),
+		"modifierTest":                     int64(5),
 	}
 
 	bench.ResetTimer()

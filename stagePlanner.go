@@ -426,7 +426,7 @@ func planValue(stream *tokenStream) (*evaluationStage, error) {
 		operator = makeLiteralStage(token.Value)
 	case TIME:
 		symbol = LITERAL
-		operator = makeLiteralStage(float64(token.Value.(time.Time).Unix()))
+		operator = makeLiteralStage(int64(token.Value.(time.Time).Unix()))
 
 	case PREFIX:
 		stream.rewind()
@@ -498,8 +498,8 @@ func findTypeChecks(symbol OperatorSymbol) typeChecks {
 		fallthrough
 	case BITWISE_XOR:
 		return typeChecks{
-			left:  isFloat64,
-			right: isFloat64,
+			left:  isint64,
+			right: isint64,
 		}
 	case PLUS:
 		return typeChecks{
@@ -515,12 +515,12 @@ func findTypeChecks(symbol OperatorSymbol) typeChecks {
 		fallthrough
 	case EXPONENT:
 		return typeChecks{
-			left:  isFloat64,
-			right: isFloat64,
+			left:  isint64,
+			right: isint64,
 		}
 	case NEGATE:
 		return typeChecks{
-			right: isFloat64,
+			right: isint64,
 		}
 	case INVERT:
 		return typeChecks{
@@ -528,7 +528,7 @@ func findTypeChecks(symbol OperatorSymbol) typeChecks {
 		}
 	case BITWISE_NOT:
 		return typeChecks{
-			right: isFloat64,
+			right: isint64,
 		}
 	case TERNARY_TRUE:
 		return typeChecks{

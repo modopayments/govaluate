@@ -30,7 +30,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -41,7 +41,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 50.0,
+					Value: int64(50),
 				},
 			},
 		},
@@ -52,7 +52,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 0.0,
+					Value: int64(0),
 				},
 			},
 		},
@@ -62,7 +62,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -72,7 +72,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 16.0,
+					Value: int64(16),
 				},
 			},
 		},
@@ -82,7 +82,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 11259375.0,
+					Value: int64(11259375),
 				},
 			},
 		},
@@ -92,7 +92,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 11259375.0,
+					Value: int64(11259375),
 				},
 			},
 		},
@@ -158,29 +158,7 @@ func TestConstantParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1234567890.0,
-				},
-			},
-		},
-		TokenParsingTest{
-
-			Name:  "Single floating-point",
-			Input: "0.5",
-			Expected: []ExpressionToken{
-				ExpressionToken{
-					Kind:  NUMERIC,
-					Value: 0.5,
-				},
-			},
-		},
-		TokenParsingTest{
-
-			Name:  "Single large floating point",
-			Input: "3.14567471",
-			Expected: []ExpressionToken{
-				ExpressionToken{
-					Kind:  NUMERIC,
-					Value: 3.14567471,
+					Value: int64(1234567890),
 				},
 			},
 		},
@@ -255,7 +233,7 @@ func TestConstantParsing(test *testing.T) {
 		},
 		TokenParsingTest{
 			Name:      "Multiple parameter function",
-			Input:     "foo('bar', 1.0)",
+			Input:     "foo('bar', 1)",
 			Functions: map[string]ExpressionFunction{"foo": noop},
 			Expected: []ExpressionToken{
 				ExpressionToken{
@@ -274,7 +252,7 @@ func TestConstantParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind: CLAUSE_CLOSE,
@@ -283,7 +261,7 @@ func TestConstantParsing(test *testing.T) {
 		},
 		TokenParsingTest{
 			Name:      "Nested function",
-			Input:     "foo(foo('bar'), 1.0, foo(2.0))",
+			Input:     "foo(foo('bar'), 1, foo(2))",
 			Functions: map[string]ExpressionFunction{"foo": noop},
 			Expected: []ExpressionToken{
 				ExpressionToken{
@@ -314,7 +292,7 @@ func TestConstantParsing(test *testing.T) {
 
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 
 				ExpressionToken{
@@ -330,7 +308,7 @@ func TestConstantParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 				ExpressionToken{
 					Kind: CLAUSE_CLOSE,
@@ -362,7 +340,7 @@ func TestConstantParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -390,7 +368,7 @@ func TestConstantParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind: CLAUSE_CLOSE,
@@ -401,7 +379,7 @@ func TestConstantParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 3.0,
+					Value: int64(3),
 				},
 			},
 		},
@@ -541,7 +519,7 @@ func TestComparatorParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -549,7 +527,7 @@ func TestComparatorParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
 		},
@@ -560,7 +538,7 @@ func TestComparatorParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -568,7 +546,7 @@ func TestComparatorParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
 		},
@@ -579,7 +557,7 @@ func TestComparatorParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -587,7 +565,7 @@ func TestComparatorParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 0.0,
+					Value: int64(0),
 				},
 			},
 		},
@@ -598,7 +576,7 @@ func TestComparatorParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -606,7 +584,7 @@ func TestComparatorParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
 		},
@@ -617,7 +595,7 @@ func TestComparatorParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -625,7 +603,7 @@ func TestComparatorParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
 		},
@@ -636,7 +614,7 @@ func TestComparatorParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -644,7 +622,7 @@ func TestComparatorParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
 		},
@@ -958,7 +936,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -966,7 +944,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -977,7 +955,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -985,7 +963,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -996,7 +974,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1004,7 +982,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1015,7 +993,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1023,7 +1001,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1034,7 +1012,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1042,7 +1020,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1053,7 +1031,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1061,7 +1039,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1072,7 +1050,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1080,7 +1058,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1091,7 +1069,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1099,7 +1077,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1110,7 +1088,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1118,7 +1096,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1129,7 +1107,7 @@ func TestModifierParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  MODIFIER,
@@ -1137,7 +1115,7 @@ func TestModifierParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1162,7 +1140,7 @@ func TestPrefixParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1222,7 +1200,7 @@ func TestPrefixParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1394,7 +1372,7 @@ func TestTernaryParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 			},
 		},
@@ -1405,7 +1383,7 @@ func TestTernaryParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  COMPARATOR,
@@ -1413,7 +1391,7 @@ func TestTernaryParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 0.0,
+					Value: int64(0),
 				},
 				ExpressionToken{
 					Kind:  TERNARY,
@@ -1432,7 +1410,7 @@ func TestTernaryParsing(test *testing.T) {
 			Expected: []ExpressionToken{
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 1.0,
+					Value: int64(1),
 				},
 				ExpressionToken{
 					Kind:  TERNARY,
@@ -1440,7 +1418,7 @@ func TestTernaryParsing(test *testing.T) {
 				},
 				ExpressionToken{
 					Kind:  NUMERIC,
-					Value: 2.0,
+					Value: int64(2),
 				},
 			},
 		},

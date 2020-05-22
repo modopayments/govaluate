@@ -77,7 +77,7 @@ func (this EvaluableExpression) findNextSQLString(stream *tokenStream, transacti
 		ret = fmt.Sprintf("[%s]", token.Value.(string))
 
 	case NUMERIC:
-		ret = fmt.Sprintf("%g", token.Value.(float64))
+		ret = fmt.Sprintf("%d", token.Value.(int64))
 
 	case COMPARATOR:
 		switch comparatorSymbols[token.Value.(string)] {

@@ -38,7 +38,7 @@ func TestParameterEvaluation(test *testing.T) {
 	}
 
 	parameters := make(map[string]interface{}, 8)
-	parameters["foo"] = -1
+	parameters["foo"] = int64(-1)
 
 	result, err := expression.Evaluate(parameters)
 	if err != nil {
@@ -61,8 +61,8 @@ func TestModifierEvaluation(test *testing.T) {
 	}
 
 	parameters := make(map[string]interface{}, 8)
-	parameters["requests_made"] = 100
-	parameters["requests_succeeded"] = 80
+	parameters["requests_made"] = int64(100)
+	parameters["requests_succeeded"] = int64(80)
 
 	result, err := expression.Evaluate(parameters)
 	if err != nil {
@@ -108,8 +108,8 @@ func TestFloatEvaluation(test *testing.T) {
 	}
 
 	parameters := make(map[string]interface{}, 8)
-	parameters["total_mem"] = 1024
-	parameters["mem_used"] = 512
+	parameters["total_mem"] = int64(512)
+	parameters["mem_used"] = int64(1024)
 
 	result, err := expression.Evaluate(parameters)
 	if err != nil {
@@ -117,8 +117,8 @@ func TestFloatEvaluation(test *testing.T) {
 		test.Fail()
 	}
 
-	if result != 50.0 {
-		test.Logf("Expected '50.0', got '%v'\n", result)
+	if result != int64(200) {
+		test.Logf("Expected '200', got '%v'\n", result)
 		test.Fail()
 	}
 }
@@ -148,7 +148,7 @@ func TestMultipleEvaluation(test *testing.T) {
 	parameters := make(map[string]interface{}, 8)
 
 	for i := 0; i < 64; i++ {
-		parameters["response_time"] = i
+		parameters["response_time"] = int64(i)
 		result, err := expression.Evaluate(parameters)
 		if err != nil {
 			test.Log(err)
@@ -168,7 +168,7 @@ func TestStrlenFunction(test *testing.T) {
 	functions := map[string]ExpressionFunction{
 		"strlen": func(args ...interface{}) (interface{}, error) {
 			length := len(args[0].(string))
-			return (float64)(length), nil
+			return (int64)(length), nil
 		},
 	}
 

@@ -486,7 +486,7 @@ func TestInvalidParameterCalls(test *testing.T) {
 		EvaluationFailureTest{
 
 			Name:       "Mismatched parameters",
-			Input:      "foo.FuncArgStr(5)",
+			Input:      "foo.FuncArgStr(true)",
 			Parameters: fooFailureParameters,
 			Expected:   MISMATCHED_PARAMETERS,
 		},
@@ -522,12 +522,12 @@ func runEvaluationFailureTests(evaluationTests []EvaluationFailureTest, test *te
 			testCase.Parameters = EVALUATION_FAILURE_PARAMETERS
 		}
 
-		_, err = expression.Evaluate(testCase.Parameters)
+		val, err := expression.Evaluate(testCase.Parameters)
 
 		if err == nil {
 
 			test.Logf("Test '%s' failed", testCase.Name)
-			test.Logf("Expected error, received none.")
+			test.Logf("Expected error, received none. Received value %v", val)
 			test.Fail()
 			continue
 		}

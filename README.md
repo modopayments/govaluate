@@ -6,6 +6,8 @@ govaluate
 [![Go Report Card](https://goreportcard.com/badge/github.com/Knetic/govaluate)](https://goreportcard.com/report/github.com/Knetic/govaluate) 
 [![Gocover](https://gocover.io/_badge/github.com/Knetic/govaluate)](https://gocover.io/github.com/Knetic/govaluate)
 
+This is a fork of Knetic/govaluate that uses int64 exclusively
+
 Provides support for evaluating arbitrary C-like artithmetic/string expressions.
 
 Why can't you just write these expressions in code?
